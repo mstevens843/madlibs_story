@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Madlibs Form{% endblock %}
+
+{% block content %}
+<form action="/story">
+    <!-- Dropdown menu to allow you to select story -->
+    <label for="story_choice">Choose a story:</label>
+    <select id="story_choice" name="story_choice">
+        <option value="original">Original Story</option>
+        <option value="fairytale">Fairytale</option>
+        <option value="superhero_tale">Superhero Tale</option>
+        <option value="wild_west">Wild West</option>
+    </select><br><br>
+
+
+
+    <!-- Input fields that are dynamically generated based on story.  -->
+    {% for prompt in prompts %}
+        <label for="{{ prompt }}">{{ prompt | capitalize }}:</label>
+        <input type="text" id="{{ prompt }}" name="{{ prompt }}"><br><br>
+    {% endfor %}
+    <input type="submit" value="Generate Story">
+</form>
+{% endblock %}
